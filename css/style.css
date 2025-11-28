@@ -508,7 +508,20 @@ footer .credit a {
   padding: 1.2rem;
   border: 1px solid #666;
   width: 80%;
+  animation: animateModal 0.4s;
 }
+
+/* Modal Animation */
+@keyframes animateModal {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+} 
 
 .modal-container .close-icon {
   position: absolute;
