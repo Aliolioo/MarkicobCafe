@@ -21,6 +21,7 @@
   <!-- Alpine JS -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
+  <!-- App -->
   <script src="src/app.js"></script>
 </head>
 
@@ -165,13 +166,14 @@
     </p>
 
     <div class="row">
+      <template>
       <div class="product-card">
         <div class="product-icons">
           <a href="#"><i data-feather="shopping-cart"></i></a>
           <a href="#" class="item-detail-button"><i data-feather="eye"></i></a>
         </div>
         <div class="product-image">
-          <img src="IMG/Products/matcha.jpg" alt="Product 1" />
+          <img :src="IMG/Products/${item.img}" alt="item.name" />
         </div>
         <div class="product-content">
           <h3>Matcha Niko</h3>
@@ -245,6 +247,7 @@
           <div class="product-price">IDR 100K <span>IDR 200K</span></div>
         </div>
       </div>
+      </template>
     </div>
   </section>
   <!-- Products Section End -->
