@@ -120,6 +120,19 @@ body {
 }
 
 /* Shopping Cart */
+#shopping-cart-button {
+  position: relative;
+}
+#shopping-cart-button .cart-quantity {
+  display: inline-block;
+  padding:  1px 5px;
+  background-color: red;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 0;
+  right: -10px;
+}
 .shopping-cart {
   position: absolute;
   top: 100%;
@@ -393,13 +406,6 @@ body {
   font-weight: bold;
 }
 
-.products .product-price span {
-  text-decoration: line-through;
-  font-weight: lighter;
-  font-size: 1rem;
-}
-
-
 /* Contact Section */
 .contact .row {
   display: flex;
@@ -517,11 +523,12 @@ footer .credit a {
     top: -300px;
     opacity: 0;
   }
+
   to {
     top: 0;
     opacity: 1;
   }
-} 
+}
 
 .modal-container .close-icon {
   position: absolute;
