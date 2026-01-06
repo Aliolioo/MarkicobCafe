@@ -15,14 +15,57 @@ document.addEventListener('alpine:init', () => {
         total: 0,
         quantity: 0,
         add(newItem) {
-            this.items.push(newItem);
-            this.quantity++;
-            this.total += newItem.price;
-            console.log(this.total);
-        },
-    });
-});
+            // check wether there is the same item in the cart
+            const cartItem = this.items.find(item => item.id === newItem.id);
 
+            // IF FALSE, ADD NEW ITEM
+            if (!cartItem) {
+                this.items.push({ ...newItem, quantity: 1, total: newItem.price });
+                this.quantity++;
+                this.total += newItem.price;
+            } else {
+                // IF ITEM EXISTS, CHECK WETHER THE ITEMS IS THE SAME WITH THE ONE IN CART
+                this.items = this.items.map(item => {
+                    // IF ITEM IS DIFFERENT, RETURN THE ITEM AS IS
+                    if (item.id !== newItem.id) {
+                        return item;
+                    } else {
+                        // IF ITEM IS THE SAME, UPDATE THE QUANTITY AND TOTAL PRICE
+                        item.quantity++;
+                        item.total = item.quantity * item.price;
+                        this.quantity++;
+                        this.total += item.price;
+                        return item;
+                    }
+                })
+            }
+        },
+        remove(id) {
+            // find the item id to be removed
+            const cartItem = this.items.find(item => item.id === id);
+
+            //IF ITEM MORE THAN1, DECREASE QUANTITY
+            if (cartItem.quantity > 1) {
+                this.items = this.items.map(item => {
+                    if (item.id !== id) {
+                        return item;
+                    } else {
+                        item.quantity--;
+                        item.total = item.quantity * item.price;
+                        this.quantity--;
+                        this.total -= item.price;
+                        return item;
+                    }
+                });
+            } else if (cartItem.quantity === 1) {
+                //IF ITEM ONLY 1, REMOVE IT FROM THE CART
+                this.items = this.items.filter(item => item.id !== id);
+                this.quantity--;
+                this.total -= cartItem.price;
+            }
+        },
+        });
+});
 
 //konversi ke rupiah 
 function rupiah(Number) {
